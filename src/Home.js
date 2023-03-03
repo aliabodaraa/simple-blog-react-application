@@ -2,14 +2,14 @@ import { useState,useEffect } from 'react';
 import BlogList from './BlogList';
 
 const Home = () => {
-    useEffect(()=>console.log("call when render the page in case we reload or any reactive value change"));
+    useEffect(()=>{
+        console.log("call when render the page in case we reload or any reactive value change")
+        fetch('http://localhost:9000/blogs')
+        .then((res)=>res.json())
+        .then((data)=>setBlogs(data));
+    },[]);
 
-    const [blogs,setBlogs]=useState([
-        {title:"title 1",body:"body 1",author:"author 1",id:1},
-        {title:"title 2",body:"body 2",author:"author 2",id:2},
-        {title:"title 3",body:"body 3",author:"author 3",id:3},
-        {title:"title 4",body:"body 4",author:"author 4",id:4}
-    ]);
+    const [blogs,setBlogs]=useState([]);
     const handleDelete=(id) => {
         const newBlogs=blogs.filter(blog => blog.id!==id);
         setBlogs(newBlogs);
@@ -30,5 +30,5 @@ export default Home;
 
 // you can make the useEffect triggers only when the component first load via add an empty array as a second param that represents acual dependencies
 //  useEffect(()=>console.log("call when render the page in case we reload or any reactive value change"),[]);
-//  note : any reactive value you added to dependencies array, the useEffect is going to watch this value and if it changes it will run the function
+//  note : any reactive variable you added to dependencies array, the useEffect is going to watch this value and if it changes it will run the function
 //best usage for fetching data
