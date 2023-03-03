@@ -2,23 +2,37 @@ import { useState,useEffect } from 'react';
 import BlogList from './BlogList';
 
 const Home = () => {
-    useEffect(()=>{
-        console.log("call when render the page in case we reload or any reactive value change")
-        fetch('http://localhost:9000/blogs')
-        .then((res)=>res.json())
-        .then((data)=>setBlogs(data));
-    },[]);
 
-    const [blogs,setBlogs]=useState([]);
-    const handleDelete=(id) => {
-        const newBlogs=blogs.filter(blog => blog.id!==id);
-        setBlogs(newBlogs);
-    };
+    const [blogs,setBlogs]=useState(null);
+    const [isPending,setIsPending]=useState(true);
+    const [error,setError]=useState(null);
+    useEffect(()=>{
+        setTimeout(()=>{
+            console.log("call when render the page in case we reload or any reactive value change")
+            fetch('http://localhost:9000/blogs')
+            .then((res)=>{
+                if(!res.ok)
+                    throw Error('could not fetxh the data for that resource');
+                    setError(null);
+                    return res.json();
+            })
+            .then((data)=>{
+                setBlogs(data)
+                setIsPending(false);
+            }).catch((err)=>{
+                //catch the error when occurs(throws)
+                setError(err.message);
+                setIsPending(false);
+                console.log(err.message);
+            });
+        },1000)
+
+    },[]);
     return ( 
         <div className = "home" >
-            <BlogList blogs={blogs} title={"allBlogs"} handleDelete={handleDelete}/>
-            <hr />
-            <BlogList blogs={blogs.filter((blog)=> blog.author!=='author 1'&& blog.author!=='author 2')} title={"Filtered Blogs"}/>
+            {error && <div>{error}.</div>}
+           {isPending && <div>Loading ...</div>}
+           {blogs && <BlogList blogs={blogs} title={"allBlogs"}/>}
         </div>
     );
 }
