@@ -31,3 +31,4 @@ export default Home;
 // you can make the useEffect triggers only when the component first load via add an empty array as a second param that represents acual dependencies
 //  useEffect(()=>console.log("call when render the page in case we reload or any reactive value change"),[]);
 //  note : any reactive value you added to dependencies array, the useEffect is going to watch this value and if it changes it will run the function
+//best usage for fetching data
