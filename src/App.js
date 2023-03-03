@@ -1,25 +1,34 @@
 
 import Navbar from './Navbar';
 import Home from './Home';
-
-const handleClick=(e)=>{
-	console.log(e.target);
-}
-const handleClickWithParam=(name,e)=>{
-	console.log(name,e.target);
-}
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+import Create from './Create';
+import Timer from "./Timer";
+import { useState } from "react";
 function App() {
+  const [display, toggleDisplay] = useState(false);
 
+  const handleToggleDisplay = () => {
+    toggleDisplay(!display);
+  };
   return (
-    <div className="App">
-        <Navbar/>
-        <button onClick={handleClick}>click me1</button>
-        <button onClick={(e)=>handleClickWithParam("param",e) }>click me2</button>
-
-        <div className="content">
-          <Home/>
-        </div>
-    </div>
+      <div className="App">
+          <BrowserRouter>
+            <div className="timer">
+              <button onClick={handleToggleDisplay}>
+                {display ? "hidden" : "visible"}
+              </button>
+              {display && <Timer />}
+            </div>
+            <Navbar/>
+            <div className="content">
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/create" element={<Create />} />
+              </Routes>
+            </div>
+          </BrowserRouter>
+      </div>
   );
 }
 

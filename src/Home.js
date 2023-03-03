@@ -5,7 +5,7 @@ const Home = () => {
     const {data:blogs,isPending,error} = useFetch('http://localhost:9000/blogs')
     return ( 
         <div className = "home" >
-            {error && <div>{error}.</div>}
+           {error && <div>{error}.</div>}
            {isPending && <div>Loading ...</div>}
            {blogs && <BlogList blogs={blogs} title={"allBlogs"}/>}
         </div>
