@@ -6,6 +6,7 @@ import Create from './Create';
 import Timer from "./Timer";
 import BlogDetails from './BlogDetails';
 import { useState } from "react";
+import NotFound from './NotFound';
 
 function App() {
   const [display, toggleDisplay] = useState(false);
@@ -28,6 +29,7 @@ function App() {
                 <Route exact path="/" element={<Home />} />
                 <Route path="/create" element={<Create />} />
                 <Route path="/blogs/:id" element={<BlogDetails />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
           </BrowserRouter>

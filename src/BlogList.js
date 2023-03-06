@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 const BlogList = ({blogs,title}) => {
     return (
         <div className="blog-preview">
-            <h2>{title}</h2>
+            <h1>{title}</h1><br /><hr />
                 {blogs.map((blog)=>(
                     <div className="blog-preview" key={blog.id}>
                         <Link to={`/blogs/${blog.id}`}>

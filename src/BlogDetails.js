@@ -13,7 +13,7 @@ const  BlogDetails = () => { //abbreviation stateless functional component
         .then(()=>{
             console.log("Delete The Blog That have the id = "+blog.id);
             navigate('/');
-        });;
+        });
 
     };
     return ( 
