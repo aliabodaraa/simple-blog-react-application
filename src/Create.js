@@ -17,7 +17,7 @@ const Create = () => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newBlog),
         })
-        .then((response)=>{
+        .then(()=>{
             console.log("A New Blog Is Added");
             setIsPending(false);
             navigate('/');
