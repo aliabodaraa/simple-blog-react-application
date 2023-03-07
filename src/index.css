@@ -44,7 +44,13 @@
 
 /* blog previews / list */
 
+.blogs h1 {
+    text-align: center;
+    color: #f1356d;
+}
+
 .blog-preview {
+    position: relative;
     padding: 10px 16px;
     margin: 20px 0;
     border-bottom: 1px solid #fafafa;
@@ -52,11 +58,6 @@
 
 .blog-preview:hover {
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
-}
-
-.blog-preview h1 {
-    text-align: center;
-    color: #888888;
 }
 
 .blog-preview h2 {
@@ -92,28 +93,34 @@
 }
 
 
-/* create new blog form */
+/* create/edit new blog form */
 
-.create {
+.create-blog,
+.edit-blog {
     max-width: 400px;
     margin: 0 auto;
     text-align: center;
 }
 
-.create label {
+.create-blog label,
+.edit-blog label {
     text-align: left;
     display: block;
 }
 
-.create h2 {
+.create-blog h2,
+.edit-blog h2 {
     font-size: 20px;
     color: #f1356d;
     margin-bottom: 30px;
 }
 
-.create input,
-.create textarea,
-.create select {
+.create-blog input,
+.create-blog textarea,
+.create-blog select,
+.edit-blog input,
+.edit-blog textarea,
+.edit-blog select {
     width: 100%;
     padding: 6px 10px;
     margin: 10px 0;
@@ -122,11 +129,29 @@
     display: block;
 }
 
-.create button {
+.create-blog button,
+.edit-blog button {
     background: #f1356d;
     color: #fff;
     border: 0;
     padding: 8px;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.blogs>.blog-preview>a.edit-blog {
+    background-color: #ffffff;
+    color: #e42a51;
+    border: 1px solid #e42a51;
+    padding: 4px 13px;
+    border-radius: 4px;
+    position: absolute;
+    left: 509px;
+    text-decoration: none;
+    top: 20px;
+}
+
+.blogs>.blog-preview>a.edit-blog:hover {
+    background-color: #e42a51;
+    color: white;
 }

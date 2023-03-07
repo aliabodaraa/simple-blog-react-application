@@ -24,7 +24,7 @@ const Create = () => {
         });
     }   
     return ( 
-        <div className="create">
+        <div className="create-blog">
             <h2>Add a new Blog</h2>
             <form action="" onSubmit={handleSubmit}>
                 <label htmlFor="title">Blog Title :</label>

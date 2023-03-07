@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 const AdvancedFeachDate = async(url) => {
     let response = await fetch(url);
     let AccualData = await response.json();
-    console.log(AccualData);
+    //console.log(AccualData);
     return AccualData;
 }
 const useFetch = (url) => {
@@ -21,11 +21,11 @@ const useFetch = (url) => {
                     if (err.name === "AbortError")
                         console.log(err, "fetch aborted");
                     else {
-						setError(err.message);
-						setIsPending(false);
-                     }
+                        setError(err.message);
+                        setIsPending(false);
+                    }
                 });
-        }, 1000);
+        }, 100);
     }, [url]);
     return {
         data,
